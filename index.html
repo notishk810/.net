@@ -1,555 +1,246 @@
-<!doctype html>
-<html lang=\"en\">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset=\"utf-8\" />
-<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\" />
-<title>Alex Morgan — Freelance Designer & Developer</title>
-<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
-<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
-<link href=\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">
-<script src=\"https://cdn.tailwindcss.com\"></script>
-<script src=\"https://unpkg.com/lucide@latest\"></script>
-<style>
-  :root { --bg:#050505; --text:#F4F4F5; --muted:#A1A1AA; }
-  html,body { background:var(--bg); color:var(--text); font-family:'Manrope',sans-serif; -webkit-font-smoothing:antialiased; margin:0; }
-  .serif { font-family:'Cormorant Garamond',serif; }
-  ::selection { background: rgba(16,185,129,.3); color:#fff; }
-  ::-webkit-scrollbar { width:8px; height:8px; }
-  ::-webkit-scrollbar-track { background:#050505; }
-  ::-webkit-scrollbar-thumb { background:#27272A; border-radius:4px; }
-  .glass { background: rgba(255,255,255,.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border:1px solid rgba(255,255,255,.06); }
-  .grain::before { content:''; position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.04; mix-blend-mode:overlay;
-    background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/></svg>\"); }
-  .btn-primary { background:#fff; color:#000; border-radius:9999px; padding:.9rem 1.75rem; font-weight:500; transition: all .25s ease; display:inline-flex; align-items:center; gap:.5rem; }
-  .btn-primary:hover { background:#e4e4e7; box-shadow: 0 0 40px rgba(16,185,129,.25); transform: translateY(-1px); }
-  .btn-outline { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:9999px; padding:.9rem 1.75rem; font-weight:500; transition: all .25s ease; display:inline-flex; align-items:center; gap:.5rem; }
-  .btn-outline:hover { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.4); }
-  .input { background:#050505; border:1px solid rgba(255,255,255,.1); color:#fff; padding:.75rem 1rem; border-radius:.5rem; width:100%; outline:none; transition: border-color .2s; }
-  .input:focus { border-color: rgba(16,185,129,.5); }
-  .card { background:#0A0A0A; border:1px solid rgba(255,255,255,.05); border-radius:1rem; transition: border-color .3s, transform .3s; overflow:hidden; }
-  .card:hover { border-color: rgba(255,255,255,.2); transform: translateY(-4px); }
-  .fade-in { animation: fadeUp .8s ease both; }
-  @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: none; } }
-  .delay-1 { animation-delay:.1s } .delay-2 { animation-delay:.25s } .delay-3 { animation-delay:.4s } .delay-4 { animation-delay:.55s }
-  .text-glow { text-shadow: 0 0 30px rgba(16,185,129,.4); }
-  .ambient-1 { position:absolute; top:-8rem; right:-8rem; width:600px; height:600px; border-radius:50%; background:rgba(16,185,129,.10); filter: blur(140px); pointer-events:none; }
-  .ambient-2 { position:absolute; top:50%; left:-8rem; width:500px; height:500px; border-radius:50%; background:rgba(6,78,59,.25); filter: blur(120px); pointer-events:none; }
-  .hidden-x { display:none !important; }
-  .toast { position:fixed; top:5rem; right:1.5rem; z-index:100; background:#0A0A0A; border:1px solid rgba(16,185,129,.4); color:#fff; padding:.85rem 1.25rem; border-radius:.75rem; box-shadow: 0 10px 40px rgba(0,0,0,.5); animation: fadeUp .35s ease; max-width: 320px; }
-  .toast.error { border-color: rgba(248,113,113,.4); }
-  /* Hide Emergent badge if any */
-  a[href*=\"emergent\"], [class*=\"emergent-badge\"] { display:none !important; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Freelancer Portfolio</title>
+    
+    <!-- Tailwind CSS for Premium Design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .gradient-text { background: linear-gradient(90deg, #4f46e5, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hidden-section { display: none; }
+    </style>
 </head>
-<body class=\"grain\">
+<body class="bg-slate-900 text-white">
 
-<!-- ============ NAVBAR ============ -->
-<header class=\"fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-black/40 border-b border-white/5\">
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8 h-16 flex items-center justify-between\">
-    <a href=\"#\" class=\"serif text-2xl tracking-tight\">alex<span class=\"text-emerald-400\">.</span>morgan</a>
-    <nav class=\"hidden md:flex items-center gap-8 text-sm text-zinc-400\">
-      <a href=\"#services\" class=\"hover:text-white transition\">Services</a>
-      <a href=\"#work\" class=\"hover:text-white transition\">Work</a>
-      <a href=\"#articles\" class=\"hover:text-white transition\">Articles</a>
-      <a href=\"#about\" class=\"hover:text-white transition\">About</a>
-      <a href=\"#contact\" class=\"hover:text-white transition\">Contact</a>
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed w-full z-50 glass py-4 px-6 flex justify-between items-center">
+        <div class="text-2xl font-bold gradient-text">FREELANCE.PRO</div>
+        <div class="space-x-6 hidden md:flex items-center">
+            <a href="#home" class="hover:text-indigo-400 transition">Home</a>
+            <a href="#portfolio" class="hover:text-indigo-400 transition">Portfolio</a>
+            <div id="auth-buttons">
+                <button onclick="showSection('login')" class="bg-indigo-600 px-5 py-2 rounded-full hover:bg-indigo-700 transition">Login</button>
+                <button onclick="showSection('signup')" class="border border-indigo-600 px-5 py-2 rounded-full hover:bg-indigo-600 transition">Sign Up</button>
+            </div>
+            <div id="user-profile" class="hidden-section flex items-center gap-4">
+                <span id="user-email" class="text-sm"></span>
+                <button onclick="logout()" class="bg-red-500 px-5 py-2 rounded-full hover:bg-red-600 transition">Logout</button>
+            </div>
+        </div>
     </nav>
-    <div class=\"flex items-center gap-2\" id=\"nav-auth-actions\"></div>
-    <button class=\"md:hidden\" id=\"mobile-toggle\" aria-label=\"Menu\"><i data-lucide=\"menu\"></i></button>
-  </div>
-  <div id=\"mobile-menu\" class=\"hidden-x md:hidden border-t border-white/5 px-6 py-5 flex flex-col gap-3\">
-    <a href=\"#services\" class=\"py-2 text-zinc-300\">Services</a>
-    <a href=\"#work\" class=\"py-2 text-zinc-300\">Work</a>
-    <a href=\"#articles\" class=\"py-2 text-zinc-300\">Articles</a>
-    <a href=\"#about\" class=\"py-2 text-zinc-300\">About</a>
-    <a href=\"#contact\" class=\"py-2 text-zinc-300\">Contact</a>
-  </div>
-</header>
 
-<!-- ============ HERO ============ -->
-<section class=\"relative pt-32 sm:pt-40 pb-24 sm:pb-32 overflow-hidden\">
-  <div class=\"ambient-1\"></div><div class=\"ambient-2\"></div>
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8 relative\">
-    <div class=\"grid lg:grid-cols-12 gap-12 items-center\">
-      <div class=\"lg:col-span-7\">
-        <div class=\"inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass mb-8 fade-in\">
-          <i data-lucide=\"sparkles\" class=\"w-3.5 h-3.5 text-emerald-400\"></i>
-          <span class=\"text-xs tracking-[0.2em] uppercase text-zinc-400\">Available · Q1 2026</span>
+    <!-- HOME SECTION -->
+    <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center px-4 pt-20">
+        <div data-aos="zoom-in" class="relative">
+            <!-- YOUR DP HERE -->
+            <img src="https://via.placeholder.com/150" alt="Profile" class="w-40 h-40 rounded-full border-4 border-indigo-500 shadow-2xl mb-6 object-cover">
         </div>
-        <h1 class=\"serif text-5xl sm:text-6xl lg:text-7xl font-light leading-[1.05] tracking-tighter fade-in delay-1\">
-          Crafting <em class=\"italic text-emerald-300/90\">premium</em><br/>
-          digital experiences<br/>
-          for ambitious brands.
-        </h1>
-        <p class=\"mt-8 text-lg text-zinc-400 max-w-xl leading-relaxed fade-in delay-2\">
-          I'm Alex Morgan — a freelance designer & developer helping founders ship interfaces that feel inevitable. 8+ years, 90+ shipped projects.
-        </p>
-        <div class=\"mt-10 flex flex-wrap gap-4 fade-in delay-3\">
-          <a href=\"#contact\" class=\"btn-primary\">Start a project <i data-lucide=\"arrow-up-right\" class=\"w-4 h-4\"></i></a>
-          <a href=\"#work\" class=\"btn-outline\">View selected work</a>
+        <h1 data-aos="fade-up" class="text-5xl md:text-7xl font-bold mb-4">Hi, I'm <span class="gradient-text">Your Name</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200" class="text-gray-400 text-lg max-w-2xl mb-8">Professional Freelancer specializing in High-End Web Development and UI/UX Design. Turning your ideas into digital reality.</p>
+        <div data-aos="fade-up" data-aos-delay="400">
+            <a href="#portfolio" class="bg-indigo-600 px-8 py-4 rounded-full font-semibold text-lg hover:scale-110 transition-transform inline-block">View My Work</a>
         </div>
-        <div class=\"mt-14 grid grid-cols-3 gap-8 max-w-md fade-in delay-4\">
-          <div><div class=\"serif text-4xl\">8+</div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500 mt-1\">Years</div></div>
-          <div><div class=\"serif text-4xl\">90+</div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500 mt-1\">Projects</div></div>
-          <div><div class=\"serif text-4xl\">40+</div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500 mt-1\">Clients</div></div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-20 px-6 bg-slate-800">
+        <h2 class="text-4xl font-bold text-center mb-12 gradient-text" data-aos="fade-down">My Masterpieces</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Card 1 -->
+            <div data-aos="flip-left" class="glass p-4 rounded-2xl hover:scale-105 transition cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1460925895917-afbe65ae8364?auto=format&fit=crop&w=500" class="rounded-xl mb-4 w-full h-48 object-cover">
+                <h3 class="text-xl font-bold mb-2">E-Commerce Solution</h3>
+                <p class="text-gray-400 mb-4">Full-stack online store with payment integration.</p>
+                <button onclick="alert('Opening Article...')" class="text-indigo-400 font-semibold group-hover:underline">Read Case Study →</button>
+            </div>
+            <!-- Card 2 -->
+            <div data-aos="flip-left" data-aos-delay="200" class="glass p-4 rounded-2xl hover:scale-105 transition cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500" class="rounded-xl mb-4 w-full h-48 object-cover">
+                <h3 class="text-xl font-bold mb-2">AI Dashboard</h3>
+                <p class="text-gray-400 mb-4">Modern analytics panel for AI software.</p>
+                <button onclick="alert('Opening Article...')" class="text-indigo-400 font-semibold group-hover:underline">Read Case Study →</button>
+            </div>
+            <!-- Card 3 -->
+            <div data-aos="flip-left" data-aos-delay="400" class="glass p-4 rounded-2xl hover:scale-105 transition cursor-pointer group">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=500" class="rounded-xl mb-4 w-full h-48 object-cover">
+                <h3 class="text-xl font-bold mb-2">Corporate Branding</h3>
+                <p class="text-gray-400 mb-4">Visual identity for a tech startup.</p>
+                <button onclick="alert('Opening Article...')" class="text-indigo-400 font-semibold group-hover:underline">Read Case Study →</button>
+            </div>
         </div>
-      </div>
-      <div class=\"lg:col-span-5 relative fade-in delay-2\">
-        <div class=\"relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10\">
-          <!-- REPLACE THIS URL WITH YOUR OWN PROFILE PICTURE -->
-          <img src=\"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80\" alt=\"Alex Morgan\" class=\"w-full h-full object-cover\" id=\"hero-dp\" />
-          <div class=\"absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent\"></div>
-          <div class=\"absolute bottom-6 left-6 right-6\">
-            <div class=\"text-xs uppercase tracking-[0.25em] text-emerald-400 mb-2\">Freelance · Worldwide</div>
-            <div class=\"serif text-3xl\">Alex Morgan</div>
-            <div class=\"text-sm text-zinc-300 mt-1\">Designer · Developer · Strategist</div>
-          </div>
+    </section>
+
+    <!-- AUTH SECTIONS (Hidden by default) -->
+    <div id="auth-container" class="fixed inset-0 z-[60] bg-slate-900 flex items-center justify-center p-4 hidden-section">
+        <!-- Login Form -->
+        <div id="login" class="glass p-8 rounded-3xl w-full max-w-md hidden-section">
+            <h2 class="text-3xl font-bold mb-6 text-center">Welcome Back</h2>
+            <input type="email" id="login-email" placeholder="Email" class="w-full p-3 mb-4 rounded-lg bg-slate-800 border border-slate-700 focus:border-indigo-500 outline-none">
+            <input type="password" id="login-pass" placeholder="Password" class="w-full p-3 mb-4 rounded-lg bg-slate-800 border border-slate-700 focus:border-indigo-500 outline-none">
+            <button onclick="handleLogin()" class="w-full bg-indigo-600 py-3 rounded-lg font-bold hover:bg-indigo-700 transition mb-4">Login</button>
+            <p class="text-center text-sm">
+                <a href="#" onclick="showSection('forgot')" class="text-indigo-400 hover:underline">Forgot Password?</a>
+            </p>
+            <button onclick="closeAuth()" class="w-full mt-4 text-gray-400 text-sm">Close</button>
         </div>
-        <div class=\"absolute -top-4 -right-4 w-24 h-24 rounded-full glass flex items-center justify-center serif text-sm text-emerald-300 tracking-wider\">Est. 2018</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ============ SERVICES ============ -->
-<section id=\"services\" class=\"py-24 sm:py-32\">
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8\">
-    <div class=\"grid lg:grid-cols-12 gap-12 mb-16\">
-      <div class=\"lg:col-span-5\">
-        <div class=\"text-xs uppercase tracking-[0.25em] text-emerald-400 mb-4\">— Services</div>
-        <h2 class=\"serif text-4xl sm:text-5xl font-light tracking-tight leading-tight\">A small studio. <em class=\"italic text-zinc-400\">Big</em> ambitions.</h2>
-      </div>
-      <div class=\"lg:col-span-6 lg:col-start-7\">
-        <p class=\"text-zinc-400 text-lg leading-relaxed\">I work with founders and product teams on a handful of projects each year. Every engagement is hands-on, opinionated, and shipped to a level I'd put my own name on.</p>
-      </div>
-    </div>
-    <div class=\"grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden\" id=\"services-grid\"></div>
-  </div>
-</section>
-
-<!-- ============ PORTFOLIO ============ -->
-<section id=\"work\" class=\"py-24 sm:py-32\">
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8\">
-    <div class=\"mb-12\">
-      <div class=\"text-xs uppercase tracking-[0.25em] text-emerald-400 mb-4\">— Selected work</div>
-      <h2 class=\"serif text-4xl sm:text-5xl font-light tracking-tight\">A few <em class=\"italic\">recent</em> favourites.</h2>
-    </div>
-    <div class=\"grid md:grid-cols-12 gap-6\" id=\"portfolio-grid\"></div>
-  </div>
-</section>
-
-<!-- ============ ARTICLES ============ -->
-<section id=\"articles\" class=\"py-24 sm:py-32 border-t border-white/5\">
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8\">
-    <div class=\"flex flex-wrap items-end justify-between gap-4 mb-12\">
-      <div>
-        <div class=\"text-xs uppercase tracking-[0.25em] text-emerald-400 mb-4\">— Journal</div>
-        <h2 class=\"serif text-4xl sm:text-5xl font-light tracking-tight\">Field notes from <em class=\"italic\">the desk</em>.</h2>
-      </div>
-      <p class=\"text-zinc-400 max-w-sm\">Long-form essays on freelancing, design and shipping creative work.</p>
-    </div>
-    <div class=\"grid md:grid-cols-2 gap-6\" id=\"articles-grid\"></div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section id=\"about\" class=\"py-24 sm:py-32 border-t border-white/5\">
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8 grid lg:grid-cols-12 gap-12\">
-    <div class=\"lg:col-span-5\">
-      <div class=\"text-xs uppercase tracking-[0.25em] text-emerald-400 mb-4\">— About</div>
-      <h2 class=\"serif text-4xl sm:text-5xl font-light tracking-tight leading-tight\">A one-person studio with a <em class=\"italic\">decade</em> of taste.</h2>
-    </div>
-    <div class=\"lg:col-span-6 lg:col-start-7 space-y-6 text-zinc-300 text-lg leading-relaxed\">
-      <p>I've spent the last eight years designing and building digital products for founders across SaaS, fintech, and creative tools. My work has been featured on Awwards, Mobbin, and Sidebar.</p>
-      <p class=\"text-zinc-400\">I'm at my best inside a tight, opinionated team — moving fast, making decisions, and shipping work that's still defensible a year later. I take on roughly six projects per year so I can stay hands-on through every pixel.</p>
-      <div class=\"grid grid-cols-2 gap-6 pt-6 border-t border-white/5\">
-        <div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2\">Based in</div><div>Lahore · Remote worldwide</div></div>
-        <div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2\">Hours</div><div>Mon — Fri · 09:00–18:00 PKT</div></div>
-        <div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2\">Toolkit</div><div>Figma · React · FastAPI</div></div>
-        <div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500 mb-2\">Recognition</div><div>Awwards · Mobbin · Sidebar</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section id=\"contact\" class=\"py-24 sm:py-32 border-t border-white/5\">
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8 grid lg:grid-cols-12 gap-12\">
-    <div class=\"lg:col-span-5\">
-      <div class=\"text-xs uppercase tracking-[0.25em] text-emerald-400 mb-4\">— Get in touch</div>
-      <h2 class=\"serif text-4xl sm:text-5xl font-light tracking-tight leading-tight mb-8\">Have a project in mind? <em class=\"italic\">Let's talk.</em></h2>
-      <p class=\"text-zinc-400 leading-relaxed mb-10\">I read every message myself. Tell me about your project, timeline, and what success looks like — I'll come back within 24 hours.</p>
-      <div class=\"space-y-5\">
-        <div class=\"flex items-center gap-4\"><div class=\"w-10 h-10 rounded-full glass flex items-center justify-center\"><i data-lucide=\"mail\" class=\"w-4 h-4 text-emerald-400\"></i></div><div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500\">Email</div><div>hello@alexmorgan.studio</div></div></div>
-        <div class=\"flex items-center gap-4\"><div class=\"w-10 h-10 rounded-full glass flex items-center justify-center\"><i data-lucide=\"map-pin\" class=\"w-4 h-4 text-emerald-400\"></i></div><div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500\">Location</div><div>Lahore · Worldwide</div></div></div>
-        <div class=\"flex items-center gap-4\"><div class=\"w-10 h-10 rounded-full glass flex items-center justify-center\"><i data-lucide=\"clock\" class=\"w-4 h-4 text-emerald-400\"></i></div><div><div class=\"text-xs uppercase tracking-[0.2em] text-zinc-500\">Response</div><div>Within 24 hours</div></div></div>
-      </div>
-    </div>
-    <form id=\"contact-form\" class=\"lg:col-span-6 lg:col-start-7 glass rounded-2xl p-8 sm:p-10 space-y-5\">
-      <div class=\"grid sm:grid-cols-2 gap-5\">
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Name</label><input required name=\"name\" class=\"input mt-2\" /></div>
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Email</label><input required type=\"email\" name=\"email\" class=\"input mt-2\" /></div>
-      </div>
-      <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Subject</label><input required name=\"subject\" class=\"input mt-2\" /></div>
-      <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Message</label><textarea required rows=\"5\" name=\"message\" class=\"input mt-2 resize-none\"></textarea></div>
-      <button type=\"submit\" class=\"btn-primary w-full justify-center\">Send message <i data-lucide=\"send\" class=\"w-4 h-4\"></i></button>
-    </form>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer class=\"border-t border-white/5 py-12\">
-  <div class=\"max-w-7xl mx-auto px-6 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-6\">
-    <div class=\"serif text-xl\">alex<span class=\"text-emerald-400\">.</span>morgan</div>
-    <div class=\"flex items-center gap-2\">
-      <a href=\"#\" class=\"w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-white transition\"><i data-lucide=\"twitter\" class=\"w-4 h-4\"></i></a>
-      <a href=\"#\" class=\"w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-white transition\"><i data-lucide=\"github\" class=\"w-4 h-4\"></i></a>
-      <a href=\"#\" class=\"w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-white transition\"><i data-lucide=\"linkedin\" class=\"w-4 h-4\"></i></a>
-      <a href=\"#\" class=\"w-10 h-10 rounded-full glass flex items-center justify-center text-zinc-400 hover:text-white transition\"><i data-lucide=\"instagram\" class=\"w-4 h-4\"></i></a>
-    </div>
-    <div class=\"text-sm text-zinc-500\">© <span id=\"year\"></span> Alex Morgan. Made with care.</div>
-  </div>
-</footer>
-
-<!-- ============ AUTH MODAL ============ -->
-<div id=\"auth-modal\" class=\"hidden-x fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm\">
-  <div class=\"w-full max-w-md glass rounded-2xl p-8 sm:p-10 relative\">
-    <button onclick=\"closeAuth()\" class=\"absolute top-4 right-4 text-zinc-400 hover:text-white\"><i data-lucide=\"x\"></i></button>
-
-    <!-- LOGIN -->
-    <div data-view=\"login\">
-      <h2 class=\"serif text-4xl font-light mb-2\">Welcome back.</h2>
-      <p class=\"text-zinc-400 mb-8\">Sign in to access your client area.</p>
-      <form onsubmit=\"return handleLogin(event)\" class=\"space-y-5\">
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Email</label><input required type=\"email\" name=\"email\" class=\"input mt-2\" /></div>
-        <div>
-          <div class=\"flex justify-between items-center\"><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Password</label>
-            <button type=\"button\" onclick=\"showAuth('forgot')\" class=\"text-xs text-emerald-400 hover:text-emerald-300\">Forgot?</button></div>
-          <input required type=\"password\" name=\"password\" class=\"input mt-2\" />
+        <!-- Signup Form -->
+        <div id="signup" class="glass p-8 rounded-3xl w-full max-w-md hidden-section">
+            <h2 class="text-3xl font-bold mb-6 text-center">Create Account</h2>
+            <input type="email" id="signup-email" placeholder="Email" class="w-full p-3 mb-4 rounded-lg bg-slate-800 border border-slate-700 focus:border-indigo-500 outline-none">
+            <input type="password" id="signup-pass" placeholder="Password" class="w-full p-3 mb-4 rounded-lg bg-slate-800 border border-slate-700 focus:border-indigo-500 outline-none">
+            <button onclick="handleSignup()" class="w-full bg-indigo-600 py-3 rounded-lg font-bold hover:bg-indigo-700 transition mb-4">Sign Up</button>
+            <button onclick="closeAuth()" class="w-full mt-4 text-gray-400 text-sm">Close</button>
         </div>
-        <button type=\"submit\" class=\"btn-primary w-full justify-center\">Sign in</button>
-        <div class=\"text-center text-sm text-zinc-400\">No account? <button type=\"button\" onclick=\"showAuth('signup')\" class=\"text-white hover:text-emerald-300\">Create one</button></div>
-      </form>
-    </div>
 
-    <!-- SIGNUP -->
-    <div data-view=\"signup\" class=\"hidden-x\">
-      <h2 class=\"serif text-4xl font-light mb-2\">Create account.</h2>
-      <p class=\"text-zinc-400 mb-8\">Get access to project briefs and updates.</p>
-      <form onsubmit=\"return handleSignup(event)\" class=\"space-y-5\">
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Full name</label><input required name=\"name\" class=\"input mt-2\" /></div>
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Email</label><input required type=\"email\" name=\"email\" class=\"input mt-2\" /></div>
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Password</label><input required minlength=\"6\" type=\"password\" name=\"password\" class=\"input mt-2\" /><p class=\"text-xs text-zinc-500 mt-2\">At least 6 characters.</p></div>
-        <button type=\"submit\" class=\"btn-primary w-full justify-center\">Create account</button>
-        <div class=\"text-center text-sm text-zinc-400\">Have an account? <button type=\"button\" onclick=\"showAuth('login')\" class=\"text-white hover:text-emerald-300\">Sign in</button></div>
-      </form>
-    </div>
-
-    <!-- FORGOT -->
-    <div data-view=\"forgot\" class=\"hidden-x\">
-      <h2 class=\"serif text-4xl font-light mb-2\">Forgot password?</h2>
-      <p class=\"text-zinc-400 mb-8\">Enter your email and we'll send a reset link.</p>
-      <form onsubmit=\"return handleForgot(event)\" class=\"space-y-5\">
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Email</label><input required type=\"email\" name=\"email\" class=\"input mt-2\" /></div>
-        <button type=\"submit\" class=\"btn-primary w-full justify-center\">Send reset link</button>
-        <div class=\"text-center text-sm text-zinc-400\"><button type=\"button\" onclick=\"showAuth('login')\" class=\"text-white hover:text-emerald-300\">Back to sign in</button></div>
-      </form>
-    </div>
-
-    <!-- RESET (shown after forgot) -->
-    <div data-view=\"reset\" class=\"hidden-x\">
-      <h2 class=\"serif text-4xl font-light mb-2\">Reset password.</h2>
-      <p class=\"text-zinc-400 mb-8\">Choose a new password for your account.</p>
-      <form onsubmit=\"return handleReset(event)\" class=\"space-y-5\">
-        <input type=\"hidden\" name=\"email\" id=\"reset-email\" />
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">New password</label><input required minlength=\"6\" type=\"password\" name=\"password\" class=\"input mt-2\" /></div>
-        <div><label class=\"text-xs uppercase tracking-[0.15em] text-zinc-400\">Confirm password</label><input required minlength=\"6\" type=\"password\" name=\"confirm\" class=\"input mt-2\" /></div>
-        <button type=\"submit\" class=\"btn-primary w-full justify-center\">Update password</button>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- ============ ARTICLE MODAL ============ -->
-<div id=\"article-modal\" class=\"hidden-x fixed inset-0 z-[60] overflow-y-auto bg-black/80 backdrop-blur-sm\">
-  <div class=\"min-h-screen p-4 sm:p-8 flex items-start justify-center\">
-    <div class=\"w-full max-w-3xl glass rounded-2xl p-6 sm:p-10 my-8 relative\">
-      <button onclick=\"closeArticle()\" class=\"absolute top-4 right-4 text-zinc-400 hover:text-white\"><i data-lucide=\"x\"></i></button>
-      <button onclick=\"closeArticle()\" class=\"text-zinc-400 hover:text-white text-sm inline-flex items-center mb-6\"><i data-lucide=\"arrow-left\" class=\"w-4 h-4 mr-2\"></i> Back</button>
-      <div id=\"article-body\"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ============ TOAST ============ -->
-<div id=\"toast-container\"></div>
-
-<script>
-/* ============ DATA ============ */
-const SERVICES = [
-  { icon:'palette', title:'Brand & Identity', desc:'Visual systems, logos, type and tone for brands that stand out for the right reasons.' },
-  { icon:'code-2', title:'Web Development', desc:'Full-stack web apps with React and modern infra. Clean, fast, maintainable.' },
-  { icon:'pen-tool', title:'Product Design', desc:'End-to-end product design — discovery, wireframes, UI, prototype, handoff.' },
-  { icon:'globe', title:'Marketing Sites', desc:'High-converting landing pages that turn visitors into pipeline.' },
-  { icon:'line-chart', title:'Design Audits', desc:'Honest, prioritised audits of your UI/UX with a concrete improvement plan.' },
-  { icon:'rocket', title:'Launch Support', desc:'Hands-on support for product launches — assets, copy, motion, GTM prep.' },
-];
-
-const PROJECTS = [
-  { title:'Northwind Studio', cat:'Brand · Web', year:'2025', img:'https://images.unsplash.com/photo-1697292866722-13f228a35326?auto=format&fit=crop&w=1200&q=80', span:'md:col-span-8' },
-  { title:'Lumen App',        cat:'Product Design', year:'2025', img:'https://images.unsplash.com/photo-1697292866700-148d1078b17a?auto=format&fit=crop&w=900&q=80', span:'md:col-span-4' },
-  { title:'Atlas Finance',    cat:'Marketing Site', year:'2024', img:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80', span:'md:col-span-4' },
-  { title:'Forge Editor',     cat:'Web App', year:'2024', img:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80', span:'md:col-span-8' },
-];
-
-const ARTICLES = [
-  { id:'a1', slug:'winning-clients', title:'How I Land High-Ticket Freelance Clients in 2026',
-    excerpt:'A field-tested playbook for positioning, outreach, and closing premium clients without cold spam.',
-    cover:'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1200&q=80',
-    cat:'Business', read:'6 min read', date:'2026-01-12',
-    content:\"Premium clients don't come from cold blasts. They come from positioning, proof, and patience.\n\nIn this guide I share the exact 4-step framework I use to consistently land $5k+ projects: (1) Niche down with a sharp value proposition, (2) Build a focused portfolio of three signature case studies, (3) Use a referral-first outreach loop, and (4) Run a structured discovery call that pre-qualifies budget.\n\nThe biggest shift for me was treating freelancing as a service business — not a gig. That single reframe doubled my retainer revenue inside six months.\" },
-  { id:'a2', slug:'design-systems', title:'Design Systems for Solo Freelance Designers',
-    excerpt:'How a lightweight design system can 3x your speed without killing creativity.',
-    cover:'https://images.unsplash.com/photo-1561070791-2526d30994b8?auto=format&fit=crop&w=1200&q=80',
-    cat:'Design', read:'8 min read', date:'2025-12-28',
-    content:\"A design system isn't a corporate luxury. As a solo designer, it's your unfair advantage.\n\nI'll walk you through how I built a 40-component Figma library that powers every client project. The result: faster handoffs, fewer revisions, and a recognisable signature across my work.\n\nKey takeaways: keep tokens minimal, use semantic naming, and never ship a component you wouldn't use twice.\" },
-  { id:'a3', slug:'pricing', title:'Pricing Creative Work: From Hourly to Value-Based',
-    excerpt:\"Stop trading time for money. Here's the framework that took my rates from $40/hr to $12k flat projects.\",
-    cover:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80',
-    cat:'Pricing', read:'7 min read', date:'2025-12-04',
-    content:\"Hourly pricing punishes efficiency. Value-based pricing rewards expertise.\n\nThis article breaks down the exact pricing ladder I climbed over three years, with real numbers and the conversations that unlocked each tier.\" },
-  { id:'a4', slug:'workflow', title:'My Remote Freelance Workflow Stack',
-    excerpt:'The exact tools I use daily — from async comms to invoicing — to run a one-person studio.',
-    cover:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80',
-    cat:'Productivity', read:'5 min read', date:'2025-11-19',
-    content:\"Tools won't make you a great freelancer. But the wrong stack will absolutely slow you down.\n\nHere's my current setup: Linear for project tracking, Loom for async updates, Notion for the client portal, Stripe for invoicing, and Cal.com for scheduling.\" },
-];
-
-/* ============ STORAGE / AUTH (localStorage) ============ */
-const DB = {
-  users() { try { return JSON.parse(localStorage.getItem('users')||'[]'); } catch { return []; } },
-  setUsers(u) { localStorage.setItem('users', JSON.stringify(u)); },
-  session() { try { return JSON.parse(localStorage.getItem('session')||'null'); } catch { return null; } },
-  setSession(s) { s ? localStorage.setItem('session', JSON.stringify(s)) : localStorage.removeItem('session'); },
-  likes(slug) { try { return JSON.parse(localStorage.getItem('likes')||'{}'); } catch { return {}; } },
-  setLikes(L) { localStorage.setItem('likes', JSON.stringify(L)); },
-};
-
-function toast(msg, type='success') {
-  const el = document.createElement('div');
-  el.className = 'toast ' + (type==='error'?'error':'');
-  el.innerHTML = `<div class=\"flex items-center gap-2\"><i data-lucide=\"${type==='error'?'alert-circle':'check-circle-2'}\" class=\"w-4 h-4 ${type==='error'?'text-red-400':'text-emerald-400'}\"></i><span class=\"text-sm\">${msg}</span></div>`;
-  document.getElementById('toast-container').appendChild(el);
-  lucide.createIcons();
-  setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(-10px)'; el.style.transition='all .3s'; setTimeout(()=>el.remove(),300); }, 3000);
-}
-
-function renderNav() {
-  const s = DB.session();
-  const wrap = document.getElementById('nav-auth-actions');
-  if (s) {
-    wrap.innerHTML = `
-      <span class=\"hidden sm:inline text-sm text-zinc-400 mr-3\">Hi, ${s.name.split(' ')[0]}</span>
-      <button onclick=\"handleLogout()\" class=\"btn-primary text-sm\" style=\"padding:.55rem 1.1rem\"><i data-lucide=\"log-out\" class=\"w-4 h-4\"></i> Logout</button>`;
-  } else {
-    wrap.innerHTML = `
-      <button onclick=\"showAuth('login')\" class=\"text-sm text-zinc-300 hover:text-white px-3 py-2\">Login</button>
-      <button onclick=\"showAuth('signup')\" class=\"btn-primary text-sm\" style=\"padding:.55rem 1.1rem\">Sign up</button>`;
-  }
-  lucide.createIcons();
-}
-
-function showAuth(view) {
-  document.getElementById('auth-modal').classList.remove('hidden-x');
-  document.querySelectorAll('#auth-modal [data-view]').forEach(d => d.classList.add('hidden-x'));
-  const target = document.querySelector(`#auth-modal [data-view=\"${view}\"]`);
-  if (target) target.classList.remove('hidden-x');
-  lucide.createIcons();
-}
-function closeAuth() { document.getElementById('auth-modal').classList.add('hidden-x'); }
-
-function handleLogin(e) {
-  e.preventDefault();
-  const f = new FormData(e.target);
-  const email = f.get('email').toLowerCase().trim();
-  const password = f.get('password');
-  const user = DB.users().find(u => u.email === email);
-  if (!user || user.password !== password) { toast('Invalid email or password','error'); return false; }
-  DB.setSession({ email: user.email, name: user.name });
-  closeAuth(); renderNav();
-  toast('Welcome back, ' + user.name.split(' ')[0] + '!');
-  return false;
-}
-
-function handleSignup(e) {
-  e.preventDefault();
-  const f = new FormData(e.target);
-  const name = f.get('name').trim();
-  const email = f.get('email').toLowerCase().trim();
-  const password = f.get('password');
-  const users = DB.users();
-  if (users.find(u => u.email === email)) { toast('Email already registered','error'); return false; }
-  users.push({ name, email, password });
-  DB.setUsers(users);
-  DB.setSession({ email, name });
-  closeAuth(); renderNav();
-  toast('Account created — welcome!');
-  return false;
-}
-
-function handleLogout() {
-  DB.setSession(null);
-  renderNav();
-  toast('Signed out successfully');
-}
-
-function handleForgot(e) {
-  e.preventDefault();
-  const email = new FormData(e.target).get('email').toLowerCase().trim();
-  const user = DB.users().find(u => u.email === email);
-  if (!user) { toast('If that email exists, a reset link was generated.'); return false; }
-  document.getElementById('reset-email').value = email;
-  toast('Reset link generated. Choose a new password below.');
-  showAuth('reset');
-  return false;
-}
-
-function handleReset(e) {
-  e.preventDefault();
-  const f = new FormData(e.target);
-  const email = f.get('email'); const password = f.get('password'); const confirm = f.get('confirm');
-  if (password !== confirm) { toast(\"Passwords don't match\",'error'); return false; }
-  const users = DB.users();
-  const idx = users.findIndex(u => u.email === email);
-  if (idx === -1) { toast('Could not reset password','error'); return false; }
-  users[idx].password = password;
-  DB.setUsers(users);
-  toast('Password updated. Please sign in.');
-  showAuth('login');
-  return false;
-}
-
-/* ============ ARTICLE MODAL ============ */
-function openArticle(slug) {
-  const a = ARTICLES.find(x => x.slug === slug); if (!a) return;
-  const liked = DB.likes()[slug] || 0;
-  document.getElementById('article-body').innerHTML = `
-    <div class=\"flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-zinc-500 mb-6\">
-      <span class=\"text-emerald-400\">${a.cat}</span>
-      <span class=\"flex items-center gap-1\"><i data-lucide=\"clock\" class=\"w-3 h-3\"></i> ${a.read}</span>
-      <span class=\"flex items-center gap-1\"><i data-lucide=\"calendar\" class=\"w-3 h-3\"></i> ${a.date}</span>
-    </div>
-    <h1 class=\"serif text-4xl sm:text-5xl font-light leading-[1.05] tracking-tight mb-6\">${a.title}</h1>
-    <p class=\"text-xl text-zinc-300 italic leading-relaxed mb-8\">${a.excerpt}</p>
-    <div class=\"aspect-[16/9] rounded-xl overflow-hidden border border-white/10 mb-10\"><img src=\"${a.cover}\" alt=\"${a.title}\" class=\"w-full h-full object-cover\"/></div>
-    <div class=\"space-y-5 text-lg text-zinc-300 leading-relaxed\">${a.content.split('\n\n').map(p=>`<p>${p}</p>`).join('')}</div>
-    <div class=\"mt-12 pt-8 border-t border-white/5 flex flex-wrap items-center justify-between gap-4\">
-      <div class=\"text-sm text-zinc-400\">Written by <span class=\"text-white\">Alex Morgan</span></div>
-      <div class=\"flex gap-3\">
-        <button onclick=\"likeArticle('${slug}')\" class=\"btn-outline text-sm\" id=\"like-btn\"><i data-lucide=\"heart\" class=\"w-4 h-4\"></i> <span id=\"like-count\">${124+liked}</span> Like</button>
-        <button onclick=\"shareArticle('${slug}','${a.title.replace(/'/g,\"\\'\")}')\" class=\"btn-primary text-sm\"><i data-lucide=\"share-2\" class=\"w-4 h-4\"></i> Share</button>
-      </div>
-    </div>`;
-  document.getElementById('article-modal').classList.remove('hidden-x');
-  document.body.style.overflow = 'hidden';
-  lucide.createIcons();
-}
-function closeArticle() { document.getElementById('article-modal').classList.add('hidden-x'); document.body.style.overflow=''; }
-
-function likeArticle(slug) {
-  const L = DB.likes(); L[slug] = (L[slug]||0) + 1; DB.setLikes(L);
-  const span = document.getElementById('like-count');
-  if (span) span.textContent = parseInt(span.textContent) + 1;
-  toast('Thanks for the love!');
-}
-
-async function shareArticle(slug, title) {
-  const url = window.location.href.split('#')[0] + '#articles';
-  try {
-    if (navigator.share) { await navigator.share({ title, url }); }
-    else { await navigator.clipboard.writeText(url); toast('Link copied to clipboard'); }
-  } catch {}
-}
-
-/* ============ RENDER ============ */
-function render() {
-  // Services
-  document.getElementById('services-grid').innerHTML = SERVICES.map(s => `
-    <div class=\"bg-[#0A0A0A] p-8 hover:bg-[#0F0F10] transition-colors group\">
-      <i data-lucide=\"${s.icon}\" class=\"w-7 h-7 text-emerald-400 mb-6\" stroke-width=\"1.5\"></i>
-      <h3 class=\"serif text-2xl mb-3\">${s.title}</h3>
-      <p class=\"text-sm text-zinc-400 leading-relaxed\">${s.desc}</p>
-    </div>`).join('');
-
-  // Portfolio
-  document.getElementById('portfolio-grid').innerHTML = PROJECTS.map(p => `
-    <a href=\"#contact\" class=\"card group ${p.span} relative block\">
-      <div class=\"aspect-[4/3] overflow-hidden\"><img src=\"${p.img}\" alt=\"${p.title}\" class=\"w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105\"/></div>
-      <div class=\"absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90\"></div>
-      <div class=\"absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between\">
-        <div>
-          <div class=\"text-xs uppercase tracking-[0.2em] text-zinc-400 mb-2\">${p.cat} · ${p.year}</div>
-          <h3 class=\"serif text-2xl sm:text-3xl\">${p.title}</h3>
+        <!-- Forgot Password Form -->
+        <div id="forgot" class="glass p-8 rounded-3xl w-full max-w-md hidden-section">
+            <h2 class="text-3xl font-bold mb-6 text-center">Reset Password</h2>
+            <p class="text-gray-400 text-sm mb-4 text-center">Enter your email to receive a reset link.</p>
+            <input type="email" id="reset-email" placeholder="Email" class="w-full p-3 mb-4 rounded-lg bg-slate-800 border border-slate-700 focus:border-indigo-500 outline-none">
+            <button onclick="handleReset()" class="w-full bg-indigo-600 py-3 rounded-lg font-bold hover:bg-indigo-700 transition mb-4">Send Link</button>
+            <button onclick="showSection('login')" class="w-full text-gray-400 text-sm">Back to Login</button>
         </div>
-        <div class=\"w-11 h-11 rounded-full glass flex items-center justify-center group-hover:bg-white group-hover:text-black transition\"><i data-lucide=\"arrow-up-right\" class=\"w-5 h-5\"></i></div>
-      </div>
-    </a>`).join('');
+    </div>
 
-  // Articles
-  document.getElementById('articles-grid').innerHTML = ARTICLES.map(a => `
-    <button onclick=\"openArticle('${a.slug}')\" class=\"card group text-left\">
-      <div class=\"aspect-[16/9] overflow-hidden\"><img src=\"${a.cover}\" alt=\"${a.title}\" class=\"w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105\"/></div>
-      <div class=\"p-7\">
-        <div class=\"flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-zinc-500 mb-4\">
-          <span class=\"text-emerald-400\">${a.cat}</span>
-          <span class=\"flex items-center gap-1\"><i data-lucide=\"clock\" class=\"w-3 h-3\"></i> ${a.read}</span>
+    <!-- AI ASSISTANT CHATBOT -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleChat()" class="bg-indigo-600 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-transform">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div id="chat-box" class="hidden-section absolute bottom-20 right-0 w-80 glass rounded-2xl overflow-hidden shadow-2xl">
+            <div class="bg-indigo-600 p-4 font-bold flex justify-between">
+                <span>AI Assistant</span>
+                <button onclick="toggleChat()">×</button>
+            </div>
+            <div id="chat-content" class="h-64 p-4 overflow-y-auto text-sm space-y-3 bg-slate-800">
+                <div class="bg-slate-700 p-2 rounded-lg w-3/4">Hello! How can I help you today?</div>
+            </div>
+            <div class="p-3 flex gap-2 bg-slate-900">
+                <input type="text" id="chat-input" placeholder="Ask me..." class="flex-1 bg-slate-800 p-2 rounded-lg outline-none text-sm">
+                <button onclick="sendMessage()" class="bg-indigo-600 px-3 py-2 rounded-lg"><i class="fas fa-paper-plane"></i></button>
+            </div>
         </div>
-        <h3 class=\"serif text-2xl sm:text-3xl leading-snug mb-3 group-hover:text-emerald-200 transition-colors\">${a.title}</h3>
-        <p class=\"text-sm text-zinc-400 leading-relaxed mb-5\">${a.excerpt}</p>
-        <span class=\"text-sm inline-flex items-center gap-2\">Read article <i data-lucide=\"arrow-up-right\" class=\"w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform\"></i></span>
-      </div>
-    </button>`).join('');
+    </div>
 
-  document.getElementById('year').textContent = new Date().getFullYear();
-  renderNav();
-  lucide.createIcons();
-}
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-/* ============ CONTACT ============ */
-document.getElementById('contact-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  // Store locally (you can replace with email / API call)
-  const data = Object.fromEntries(new FormData(e.target).entries());
-  const msgs = JSON.parse(localStorage.getItem('contact_msgs')||'[]');
-  msgs.push({ ...data, date: new Date().toISOString() });
-  localStorage.setItem('contact_msgs', JSON.stringify(msgs));
-  toast(\"Thanks! I'll get back to you within 24 hours.\");
-  e.target.reset();
-});
+    <script>
+        // 1. Initialize AOS Animations
+        AOS.init({ duration: 1000, once: true });
 
-/* ============ MOBILE MENU + SMOOTH SCROLL ============ */
-document.getElementById('mobile-toggle').addEventListener('click', () => {
-  document.getElementById('mobile-menu').classList.toggle('hidden-x');
-});
-document.querySelectorAll('a[href^=\"#\"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const id = a.getAttribute('href');
-    if (id.length > 1 && document.querySelector(id)) {
-      e.preventDefault();
-      document.querySelector(id).scrollIntoView({ behavior:'smooth' });
-      document.getElementById('mobile-menu').classList.add('hidden-x');
-    }
-  });
-});
+        // 2. FIREBASE CONFIGURATION (Replace with your own!)
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
 
-/* ============ INIT ============ */
-render();
+        // 3. AUTH NAVIGATION LOGIC
+        function showSection(id) {
+            document.getElementById('auth-container').classList.remove('hidden-section');
+            ['login', 'signup', 'forgot'].forEach(sec => {
+                document.getElementById(sec).classList.add('hidden-section');
+            });
+            document.getElementById(id).classList.remove('hidden-section');
+        }
 
-/* Scroll-reveal */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('fade-in'); io.unobserve(en.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('section').forEach(s => io.observe(s));
-</script>
+        function closeAuth() {
+            document.getElementById('auth-container').classList.add('hidden-section');
+        }
+
+        // 4. FIREBASE AUTH FUNCTIONS
+        async function handleSignup() {
+            const email = document.getElementById('signup-email').value;
+            const pass = document.getElementById('signup-pass').value;
+            try {
+                await auth.createUserWithEmailAndPassword(email, pass);
+                alert("Account Created Successfully!");
+                closeAuth();
+            } catch (error) { alert(error.message); }
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-pass').value;
+            try {
+                await auth.signInWithEmailAndPassword(email, pass);
+                alert("Logged In Successfully!");
+                closeAuth();
+            } catch (error) { alert(error.message); }
+        }
+
+        async function handleReset() {
+            const email = document.getElementById('reset-email').value;
+            try {
+                await auth.sendPasswordResetEmail(email);
+                alert("Password reset link sent to email!");
+            } catch (error) { alert(error.message); }
+        }
+
+        function logout() {
+            auth.signOut().then(() => alert("Logged Out!"));
+        }
+
+        // Monitor Auth State
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                document.getElementById('auth-buttons').classList.add('hidden-section');
+                document.getElementById('user-profile').classList.remove('hidden-section');
+                document.getElementById('user-email').innerText = user.email;
+            } else {
+                document.getElementById('auth-buttons').classList.remove('hidden-section');
+                document.getElementById('user-profile').classList.add('hidden-section');
+            }
+        });
+
+        // 5. AI CHATBOT LOGIC
+        function toggleChat() {
+            document.getElementById('chat-box').classList.toggle('hidden-section');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const content = document.getElementById('chat-content');
+            if (!input.value) return;
+
+            // User Message
+            content.innerHTML += `<div class="bg-indigo-600 p-2 rounded-lg w-3/4 ml-auto text-right">${input.value}</div>`;
+            
+            // Simple AI Response (You can connect this to OpenAI API)
+            const userText = input.value.toLowerCase();
+            let botResponse = "I'm not sure about that, but I can help you contact the freelancer!";
+            
+            if(userText.includes("hello")) botResponse = "Hello! How can I assist you with our services today?";
+            if(userText.includes("price")) botResponse = "Prices vary by project. Please check the portfolio and contact us!";
+            if(userText.includes("skill")) botResponse = "I am expert in HTML, CSS, Tailwind, and Firebase!";
+
+            setTimeout(() => {
+                content.innerHTML += `<div class="bg-slate-700 p-2 rounded-lg w-3/4">${botResponse}</div>`;
+                content.scrollTop = content.scrollHeight;
+            }, 600);
+
+            input.value = "";
+        }
+    </script>
 </body>
-</html>
+      </html>
